@@ -1,0 +1,59 @@
+%读入图像将其灰度化
+image=imread ('D:\Pictures\img\tu1.jpeg');
+
+
+%将彩色图片灰度化并保存
+%imwrite(rgb2gray(image),'picgray.bmp'); %将彩色图象灰度化后保存
+%灰度化后的数据存入数组
+%image=rgb2gray(image);
+
+%2绘制直方图
+[x,y]=size(image);      %测量图像的尺寸参数
+pi=zeros(1,256);        %预创建存放灰度出现概率的向量
+for k=0:255
+    pi(k+1)=length(find(image==k))/(x*y);   %计算每级灰度出现的概率，将其存入pi中相应的位置
+end
+
+
+%3直方图均衡化
+pj=zeros(1,256);
+for i=1:256
+    for j=1:i
+        pj(i)=pi(j)+pj(i);  %计算累计直方图pj
+    end
+end
+
+jj=round((pj*255)+0.5);  %计算变换后的灰度值
+for i=1:256
+    newpi(i)=sum(pi(find(jj==i))); %计算现有每个灰度级出现的概率
+end
+
+%4图像均衡化
+newimage=image;
+for i=0:255
+    newimage(find(image==i))=jj(i+1);%将各个像素归一化后的灰度值赋给这个像素
+end
+
+
+%显示图像
+figure(1)
+subplot(1,2,1);
+imshow(image);    %显示原始图像
+title('原始图像')
+
+subplot(1,2,2);
+imshow(newimage)%显示均衡化后的图像
+title('均衡化后图像')
+
+figure(2)
+subplot(1,2,1);
+bar(0:255,pi,'g'); %绘制直方图
+title('原始图像直方图');
+xlabel('灰度值');
+ylabel('出现概率');
+
+subplot(1,2,2);
+bar(0:255,newpi,'b')  %显示均衡化后的直方图
+title('均衡化后图像直方图');
+xlabel('灰度值');
+ylabel('出现概率');
