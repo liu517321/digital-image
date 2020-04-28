@@ -1,0 +1,25 @@
+%高斯型拉普拉斯掩模（LoG 算子）锐化图象
+I=imread('E:\matlab\tuxiang\实验三\实验3\模糊图像（用于锐化）\guoqi_mohu1.bmp');
+A=double(I);
+H=[0,0,-1,0,0;0,-1,-2,-1,0;-1,-2,16,-2,-1;0,-1,-2,-1,0;0,0,-1,0,0];%拉普拉斯算子
+J=conv2(I,H,'same');
+K=A-J;
+subplot(2,2,1);
+imshow(I);
+title('原始图像');
+subplot(2,2,2);
+imshow(K,[]);
+title('拉普拉斯Log算子锐化后图像');
+%sobel算子
+hs=fspecial('sobel');
+S=imfilter(I,hs);
+subplot(2,2,3);
+imshow(S);
+title('sobel算子锐化后图像');
+%罗伯特锐化图像
+hp=fspecial('prewitt');
+P=imfilter(I,hp);
+B=edge(I,'roberts',0.1);
+subplot(2,2,4);
+imshow(B);
+title('罗伯特锐化后图像');
