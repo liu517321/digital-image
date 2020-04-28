@@ -1,0 +1,60 @@
+%比较BOX掩模和高斯掩模
+I=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_yuantu.bmp');%原图像
+I1=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_gaosi.bmp');%高斯噪声污染图像
+I2=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_jiaoyan.bmp');%椒盐噪声污染图像
+I3=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_chengxing.bmp');%乘性噪声污染图像
+%BOX掩模
+H1=[1 1 1 1 1 1 1 1 1]/9; %3x3邻域模板
+J=imfilter(I,H1);%邻域平均
+J1=imfilter(I1,H1);
+J2=imfilter(I2,H1);
+J3=imfilter(I3,H1);
+%高斯掩模
+H2=[1 2 1 2 4 2 1 2 1]/16;
+K=imfilter(I,H2);
+K1=imfilter(I1,H2);
+K2=imfilter(I2,H2);
+K3=imfilter(I3,H2);
+figure(1)
+subplot(1,3,1);
+imshow(I);    %显示原始图像
+title('原始图像');
+subplot(1,3,2);
+imshow(J);    %显示BOX掩模后图像
+title('BOX掩模后图像');
+subplot(1,3,3);
+imshow(K);    %显示高斯掩模后图像
+title('高斯掩模后图像');
+
+figure(2)
+subplot(1,3,1);
+imshow(I1);    %显示高斯噪声污染图像
+title('高斯污染图像');
+subplot(1,3,2);
+imshow(J1);    %显示BOX掩模后图像
+title('BOX掩模后图像');
+subplot(1,3,3);
+imshow(K1);    %显示高斯掩模后图像
+title('高斯掩模后图像');
+
+figure(3)
+subplot(1,3,1);
+imshow(I2);    %显示椒盐污染图像
+title('椒盐污染图像');
+subplot(1,3,2);
+imshow(J2);    %显示BOX掩模后图像
+title('BOX掩模后图像');
+subplot(1,3,3);
+imshow(K2);    %显示高斯掩模后图像
+title('高斯掩模后图像');
+
+figure(4)
+subplot(1,3,1);
+imshow(I3);    %显示乘性污染图像
+title('乘性污染图像');
+subplot(1,3,2);
+imshow(J3);    %显示BOX掩模后图像
+title('BOX掩模后图像');
+subplot(1,3,3);
+imshow(K3);    %显示高斯掩模后图像
+title('高斯掩模后图像');
