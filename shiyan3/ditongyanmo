@@ -1,0 +1,41 @@
+%低通掩模法平滑图象
+I=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_yuantu.bmp');%原图像
+I1=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_gaosi.bmp');%高斯噪声污染图像
+I2=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_jiaoyan.bmp');%椒盐噪声污染图像
+I3=imread('E:\matlab\tuxiang\实验三\实验3\含噪图像（用于平滑）\danghui_chengxing.bmp');%乘性噪声污染图像
+H1=[0 1 0 1 0 1 0 1 0]/4;
+J=imfilter(I,H1);
+J1=imfilter(I1,H1);
+J2=imfilter(I2,H1);
+J3=imfilter(I3,H1);
+%figure(1)
+subplot(4,2,1);
+imshow(I);    %显示原始图像
+title('原始图像');
+subplot(4,2,2);
+imshow(J);    %显示平滑后的图像
+title('原图像平滑后');
+
+%figure(2)
+subplot(4,2,3);
+imshow(I1);    %显示高斯噪声污染图像
+title('高斯污染图像');
+subplot(4,2,4);
+imshow(J1);    %显示平滑后的图像
+title('高斯污染图像平滑后');
+
+%figure(3)
+subplot(4,2,5);
+imshow(I2);    %显示椒盐污染图像
+title('椒盐污染图像');
+subplot(4,2,6);
+imshow(J2);    %显示平滑后的图像
+title('椒盐污染图像平滑后');
+
+%figure(4)
+subplot(4,2,7);
+imshow(I3);    %显示乘性污染图像
+title('乘性污染图像');
+subplot(4,2,8);
+imshow(J3);    %显示平滑后的图像
+title('乘性污染图像平滑后');
