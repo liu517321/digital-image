@@ -1,0 +1,19 @@
+%拉普拉斯掩模 H3和H4的比较
+I=imread('E:\matlab\tuxiang\实验三\实验3\模糊图像（用于锐化）\guoqi_mohu1.bmp');
+subplot(1,3,1);
+imshow(I);
+title('原始图像');
+I=double(I);
+H3=[0,-1,0;1,5,-1;0,-1,0];%拉普拉斯算子
+J=conv2(I,H3,'same');
+K=I-J;
+H4=[-1,-1,-1;-1,9,-1;-1,-1,-1];
+J1=conv2(I,H4,'same');
+K1=I-J1;
+figure(1)
+subplot(1,3,2);
+imshow(K,[]);
+title('拉普拉斯H3锐化后图像');
+subplot(1,3,3);
+imshow(K1,[]);
+title('拉普拉斯H4锐化后图像');
