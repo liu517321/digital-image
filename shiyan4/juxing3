@@ -1,0 +1,7 @@
+function [ image ] = juxing(I,m)
+
+shape3=[1 1 1
+    1 1 1
+    1 1 1];
+%shape33=reshape(shape3,[],1);
+image=median_filter(I,m,shape3);
