@@ -1,0 +1,36 @@
+function [ w ] = median_filter( J, num ,domain)
+[c1,k1] = size(J);
+[n,~] = size(domain);
+A = zeros(c1+n-1,k1+n-1);
+for i=1:c1
+    for j=1:k1
+        A(i+(n-1)/2,j+(n-1)/2)=J(i,j);
+    end
+end
+
+m=(n+1)/2;
+m0=(n-1)/2;
+B=zeros(n,n);
+for k=m:(c1+m-1)
+    for l=m:(k1+m-1)
+        for p1=-m0:m0
+            for q1=-m0:m0
+                B(p1+m,q1+m)=A(k+p1,l+q1);
+            end
+        end
+        C=B*domain;
+        n2=n*n;
+        D=reshape(C,1,n2);
+        %冒泡排序
+        for x=1:n2-1
+            for y=1:n2-x
+                if D(y)>D(y+1)
+                    temp=D(y);
+                    D(y)=D(y+1);
+                    D(y+1)=temp;
+                end
+            end
+        end
+        w(k-(n-1)/2,l-(n-1)/2)=D(num);
+    end
+end
