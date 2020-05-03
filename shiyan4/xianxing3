@@ -1,0 +1,7 @@
+function [ image ] = xianxing(I,m)
+
+shape3=[0 0 0
+    1 1 1
+    0 0 0];
+%shape33=reshape(shape3,[],1);
+image=median_filter(I,m,shape3);
