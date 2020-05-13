@@ -1,0 +1,9 @@
+%Robert算子
+function [ image ] = robert(I)
+[m,n]=size(I);
+image=double(I);
+for i=2:m-1
+    for j=2:n-1
+        image(i,j)=I(i+1,j)-I(i,j+1);
+    end
+end
