@@ -1,0 +1,59 @@
+I=imread('E:\matlab\tuxiang\实验五\图像文件\Girl_Elaine.tif'); %读取图像
+I1=mat2gray(I);%实现图像矩阵的归一化操作
+figure(1);
+imshow(I)
+title('原始图像');
+
+
+%Robert算子
+img1=robert(I);
+figure(2);
+subplot(2,2,1)
+imshow(img1)
+title('Robert边缘提取后的图像');
+img1 = img1 + double(I);
+subplot(2,2,2)
+imshow(uint8(img1))
+title('Robert锐化后的图像');
+
+%Sobel算子
+img2=sobel(I);
+figure(3);
+subplot(2,2,1)
+imshow(img2)
+title('Sobel边缘提取后的图像');
+img2 = img2 + double(I);
+subplot(2,2,2);
+imshow(uint8(img2))
+title('Sobel锐化后的图像');
+
+
+%拉普拉斯算子
+img3=lapulasi(I1);
+figure(4)
+subplot(2,2,1)
+imshow(I)
+title('原始图像');
+subplot(2,2,2)
+imshow(img3);
+title('Laplacian算子处理后的图像')
+
+%水平垂直梯度算子
+figure(5)
+img4=shuiping(I);
+subplot(2,2,1)
+imshow(img4)
+title('水平边缘提取后的图像');
+img4 = img4 + double(I);
+subplot(2,2,2);
+imshow(uint8(img4))
+title('水平锐化后的图像');
+
+img5=chuizhi(I);
+subplot(2,2,3);
+imshow(img5)
+title('竖直边缘提取后的图像');
+img5 = img5 + double(I);
+subplot(2,2,4);
+imshow(uint8(img5))
+title('竖直锐化后的图像');
