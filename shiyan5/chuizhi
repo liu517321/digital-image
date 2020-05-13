@@ -1,0 +1,9 @@
+%水平垂直梯度算子
+function [ image ] = chuizhi(I)
+[m,n]=size(I);
+image=double(I);
+for i=2:m-1
+    for j=2:n-1
+        image(i,j)=I(i-1,j-1)-I(i-1,j+1)+2*I(i,j-1)-2*I(i,j+1)+I(i+1,j-1)-I(i+1,j+1);       
+    end
+end
