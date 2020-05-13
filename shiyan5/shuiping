@@ -1,0 +1,9 @@
+%水平垂直梯度算子
+function [ image ] = shuiping(I)
+[m,n]=size(I);
+image=double(I);
+for i=2:m-1
+    for j=2:n-1
+        image(i,j)=2*I(i,j)+I(i-1,j-1)+I(i-1,j+1)-I(i+1,j+1)-2*I(i+1,j)-I(i+1,j);       
+    end
+end
