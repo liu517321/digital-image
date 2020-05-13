@@ -1,0 +1,16 @@
+%拉普拉斯算子
+function [ image ] = lapulasi(I)
+[m,n]=size(I);
+image=I;%为保留图像的边缘一个像素
+%LaplacianNum=0;%经Laplacian算子计算得到的每个像素的值
+LaplacianThreshold=0.2;%设定阈值
+for j=2:m-1 %进行边界提取
+    for k=2:n-1
+        LaplacianNum=abs(4*I(j,k)-I(j-1,k)-I(j+1,k)-I(j,k+1)-I(j,k-1));
+        if(LaplacianNum > LaplacianThreshold)
+            image(j,k)=255;
+        else
+            image(j,k)=0;
+        end
+    end
+end
